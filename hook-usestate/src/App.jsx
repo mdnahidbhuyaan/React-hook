@@ -10,8 +10,7 @@ setNum(prev=>({...prev,age:50}))
   return (
     <div>
       <h1> {num.user},{num.age}</h1>
-    <h2>Home</h2>
-    <h2>Home</h2>
+   
       <button onClick = {btnClick}
         >Increase</button>
     </div>
