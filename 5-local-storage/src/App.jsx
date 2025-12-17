@@ -2,15 +2,13 @@ import React from 'react'
 
 const App = () => {
 
-const user = {
-  userName:"Nahid Bhuyaan",
-  age:24,
-  city:"Dhaka"
+
+function getData () {
+  console.log("Get Data from Local Storage")
 }
-localStorage.setItem("user", JSON.stringify(user))
   return (
     <div>
-      App Local Storage
+      <button onClick={getData}>Get Data</button>
     </div>
   )
 }
