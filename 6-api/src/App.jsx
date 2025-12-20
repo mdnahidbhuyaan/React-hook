@@ -24,6 +24,7 @@ const App = () => {
     <div>
       <h1>A is {a}</h1>
       <h1>B is {b}</h1>
+      <h1>B is {b}</h1>
       <button onClick={()=>{
         setA(a+1);
       }}>Change A</button>
