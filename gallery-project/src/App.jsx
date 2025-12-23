@@ -1,41 +1,46 @@
-import axios from "axios";
-
-import React, { useState } from "react";
-
+import React, { useEffect } from 'react'
+import axios from "axios"
+import { useState } from 'react'
 const App = () => {
-  const [userData, setUserData] = useState([]);
 
-  const getdata = async () => {
-    const response = await axios.get(
-      "https://picsum.photos/v2/list?page=2&limit=10"
-    );
-    setUserData(response.data);
-    console.log(response.data);
- 
-  };
+const [userData, setUserData] = useState([])
+
+  const getData =async ()=>{
+   const response = await axios.get("https://picsum.photos/v2/list?page=2&limit=30")
+   setUserData(response.data)
+  }
+
+  useEffect(()=>{
+getData()
+  },[])
+
+  let prientUserData = <h3 className='text-gray-800 text-xs'>NO user available</h3>
 
 
-  let prientUserData = "No user available";
 
-  if(userData.length){
-    prientUserData = userData.map(function(elem, idx){
-      return <div>
-        <img className="h-40 " src={elem.download_url} alt="" />
+
+
+
+  if(userData.length>0){
+    prientUserData = userData.map(function(elem,idx){
+      return<div key={idx}>
+      <a href={elem.url}>
+        <div  className='h-40 w-44 rounded-xl overflow-hidden'>
+          <img className='h-full w-full object-cover' src={elem.download_url} alt="img" />
+        </div>
+        <h2 className='font-bold text-lg'>{elem.author}</h2>
+      </a>
       </div>
     })
   }
-
   return (
-    <div className="p-10 h-screen overflow-auto">
-      <button
-        onClick={getdata}
-        className="bg-cyan-400 rounded-sm px-5 py-2 active:scale-95 text-white"
-      >
-        Click
-      </button>
-      <div>{prientUserData}</div>
+    <div className='h-screen p-10 overflow-auto'>
+   
+      <div className='flex flex-wrap '>
+      {prientUserData}
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
